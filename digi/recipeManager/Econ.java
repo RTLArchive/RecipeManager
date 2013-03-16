@@ -6,13 +6,13 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
-import com.iCo6.iConomy;
-import com.iCo6.system.Accounts;
+//import com.iCo6.iConomy;
+//import com.iCo6.system.Accounts;
 
 public class Econ
 {
 	protected Economy	vaultEcon	= null;
-	protected Accounts	iConomyEcon	= null;
+	//protected Accounts	iConomyEcon	= null;
 	private boolean		enabled		= false;
 	
 	protected Econ()
@@ -37,21 +37,21 @@ public class Econ
 				}
 			}
 		}
-		else if(Bukkit.getPluginManager().getPlugin("iConomy") instanceof iConomy)
-		{
-			iConomyEcon = new Accounts();
-			
-			if(iConomyEcon != null)
-				Bukkit.getLogger().fine("iConomy detected and connected, economy available.");
-		}
-		
-		enabled = (vaultEcon != null || iConomyEcon != null);
+//		else if(Bukkit.getPluginManager().getPlugin("iConomy") instanceof iConomy)
+//		{
+//			iConomyEcon = new Accounts();
+//			
+//			if(iConomyEcon != null)
+//				Bukkit.getLogger().fine("iConomy detected and connected, economy available.");
+//		}
+		//enabled = (vaultEcon != null || iConomyEcon != null);
+		enabled = (vaultEcon != null);
 	}
 	
 	protected void clearData()
 	{
 		vaultEcon = null;
-		iConomyEcon = null;
+		//iConomyEcon = null;
 	}
 	
 	/**
@@ -79,8 +79,8 @@ public class Econ
 		
 		if(vaultEcon != null)
 			return vaultEcon.format(amount);
-		else if(iConomyEcon != null)
-			return iConomy.format(amount);
+//		else if(iConomyEcon != null)
+//			return iConomy.format(amount);
 		
 		return null;
 	}
@@ -100,8 +100,8 @@ public class Econ
 		
 		if(vaultEcon != null)
 			return vaultEcon.getBalance(playerName);
-		else if(iConomyEcon != null)
-			return iConomyEcon.get(playerName).getHoldings().getBalance();
+//		else if(iConomyEcon != null)
+//			return iConomyEcon.get(playerName).getHoldings().getBalance();
 		
 		return 0;
 	}
@@ -128,12 +128,12 @@ public class Econ
 			else
 				vaultEcon.withdrawPlayer(playerName, Math.abs(amount));
 		}
-		else if(iConomyEcon != null)
-		{
-			if(amount > 0)
-				iConomyEcon.get(playerName).getHoldings().add(amount);
-			else
-				iConomyEcon.get(playerName).getHoldings().subtract(Math.abs(amount));
-		}
+//		else if(iConomyEcon != null)
+//		{
+//			if(amount > 0)
+//				iConomyEcon.get(playerName).getHoldings().add(amount);
+//			else
+//				iConomyEcon.get(playerName).getHoldings().subtract(Math.abs(amount));
+//		}
 	}
 }
